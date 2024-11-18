@@ -1,19 +1,24 @@
-html, body
-{
-    background-color: rgb(170, 181, 183);
+html,
+body {
+  background-color: rgb(170, 181, 183);
+}
+
+form {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
 }
 
 .canvas {
-    width: 90vw;
-    aspect-ratio: 1/1;
-    border: 10px solid black;
-    display: grid;
-    box-sizing: border-box;
-    /* grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr); */
+  max-width: 800px;
+  aspect-ratio: 1/1;
+  border: 10px solid black;
+  display: grid;
+  box-sizing: border-box;
 }
 
 .cell {
-    border: 1px solid black;
-    /* border-radius: 50%; */
+  border: 1px solid black;
+  /* border-radius: 50%; */
+  /* border-radius: 33%; */
 }

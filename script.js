@@ -3,7 +3,6 @@ const resBtn = document.getElementById("resBtn");
 const colorBtn = document.getElementById("colorBtn");
 const paletteSelect = document.getElementById("paletteSelect");
 
-// resBtn.onclick = () => applyRes();
 colorBtn.onclick = () => generateArt();
 
 function generateArt() {
