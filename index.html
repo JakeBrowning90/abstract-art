@@ -10,11 +10,13 @@
   <body>
     <div class="canvas" id="canvas"></div>
     <form action="">
-      <label for="">Canvas resolution:</label>
+      <label for="resNum">Canvas resolution:</label>
       <input type="number" min="1" max="100" id="resNum" value="10" />
-      <label for="">Color palette:</label>
+      <label for="canvasSelect">Canvas color:</label>
+      <select name="" id="canvasSelect"></select>
+      <label for="paletteSelect">Color palette:</label>
       <select name="" id="paletteSelect"></select>
-      <label for="">Cell shape:</label>
+      <label for="cellShapeSelect">Cell shape:</label>
       <select name="" id="cellShapeSelect"></select>
 
       <button type="button" id="colorBtn">Generate</button>

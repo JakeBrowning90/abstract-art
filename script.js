@@ -1,12 +1,16 @@
 const canvas = document.getElementById("canvas");
 const resBtn = document.getElementById("resBtn");
 const colorBtn = document.getElementById("colorBtn");
+const canvasSelect = document.getElementById("canvasSelect");
 const paletteSelect = document.getElementById("paletteSelect");
+const shapeSelect = document.getElementById("cellShapeSelect");
 
 colorBtn.onclick = () => generateArt();
 
 function generateArt() {
-  applyRes()
+  applyCanvas();
+  applyRes();
+  applyShape();
   colorCells();
 }
 
@@ -25,7 +29,27 @@ function applyRes() {
   }
 }
 
-function populateSelect() {
+function applyCanvas() {
+  canvas.style.backgroundColor = document.getElementById("canvasSelect").value;
+}
+
+function applyShape() {
+  let shape = document.getElementById("cellShapeSelect").value;
+  for (const child of canvas.children) {
+    child.style.borderRadius = shape;
+  }
+}
+
+function populateCanvasses() {
+  canvasses.forEach((canvas) => {
+    const option = document.createElement("option");
+    option.textContent = canvas;
+    option.value = canvas;
+    canvasSelect.appendChild(option);
+  });
+}
+
+function populatePalettes() {
   palettes.forEach((palette) => {
     const option = document.createElement("option");
     option.textContent = palette;
@@ -33,10 +57,19 @@ function populateSelect() {
   });
 }
 
+function populateShapes() {
+  shapes.forEach((shape) => {
+    const option = document.createElement("option");
+    option.textContent = shape.name;
+    option.value = shape.radius;
+    shapeSelect.appendChild(option);
+  });
+}
+
 function colorCells() {
   for (const child of canvas.children) {
     child.style.border = "none";
-    coloring[paletteSelect.value + 'Color'](child)
+    coloring[paletteSelect.value + "Color"](child);
   }
 }
 
@@ -49,25 +82,54 @@ const coloring = {
     element.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
   },
   transitColor: function (element) {
-    const x = Math.floor(Math.random() * 4);
+    const x = Math.floor(Math.random() * transitColorPalette.length);
     element.style.backgroundColor = transitColorPalette[x];
   },
   monoColor: function (element) {
-    const x = Math.floor(Math.random() * 4);
+    const x = Math.floor(Math.random() * monoColorPalette.length);
     element.style.backgroundColor = monoColorPalette[x];
   },
   mondrianColor: function (element) {
-    const x = Math.floor(Math.random() * 5);
+    const x = Math.floor(Math.random() * mondrianColorPalette.length);
     element.style.backgroundColor = mondrianColorPalette[x];
+  },
+  rainbowColor: function (element) {
+    const x = Math.floor(Math.random() * rainbowColorPalette.length);
+    element.style.backgroundColor = rainbowColorPalette[x];
   },
 };
 
 const transitColorPalette = ["black", "yellow", "cyan", "magenta"];
 
-const monoColorPalette = ["black", "grey", "lightgrey", "white"];
+const monoColorPalette = [
+  "#ffffff",
+  "#c0c0c0",
+  "#808080",
+  "#404040",
+  "#000000",
+];
 
 const mondrianColorPalette = ["black", "white", "red", "yellow", "blue"];
 
-const palettes = ["random", "transit", "mono", "mondrian"];
+const rainbowColorPalette = [
+  "#A587CA",
+  "#36CEDC",
+  "#8FE968",
+  "#FFEA56",
+  "#FFB750",
+  "#FE797B",
+];
 
-populateSelect();
+const canvasses = ["transparent", "white", "black", "lightgrey"];
+
+const palettes = ["random", "transit", "mono", "mondrian", "rainbow"];
+
+const shapes = [
+  { name: "Square", radius: "0" },
+  { name: "Rounded", radius: "33%" },
+  { name: "Circle", radius: "50%" },
+];
+
+populateCanvasses();
+populatePalettes();
+populateShapes();

@@ -4,7 +4,7 @@ body {
 }
 
 form {
-    max-width: 800px;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
 }
@@ -15,10 +15,10 @@ form {
   border: 10px solid black;
   display: grid;
   box-sizing: border-box;
+  margin: 0 auto;
+  /* background-color: white; */
 }
 
 .cell {
   border: 1px solid black;
-  /* border-radius: 50%; */
-  /* border-radius: 33%; */
 }
