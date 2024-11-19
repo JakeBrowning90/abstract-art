@@ -97,6 +97,10 @@ const coloring = {
     const x = Math.floor(Math.random() * rainbowColorPalette.length);
     element.style.backgroundColor = rainbowColorPalette[x];
   },
+  marpatColor: function (element) {
+    const x = Math.floor(Math.random() * marpatColorPalette.length);
+    element.style.backgroundColor = marpatColorPalette[x];
+  },
 };
 
 const transitColorPalette = ["black", "yellow", "cyan", "magenta"];
@@ -120,9 +124,11 @@ const rainbowColorPalette = [
   "#FE797B",
 ];
 
+const marpatColorPalette = ["#2e2c35", "#896e60", "#95837a", "#4e5b51"];
+
 const canvasses = ["transparent", "white", "black", "lightgrey"];
 
-const palettes = ["random", "transit", "mono", "mondrian", "rainbow"];
+const palettes = ["random", "transit", "mono", "mondrian", "rainbow", "marpat"];
 
 const shapes = [
   { name: "Square", radius: "0" },
