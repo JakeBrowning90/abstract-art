@@ -4,9 +4,9 @@ body {
 }
 
 form {
-    max-width: 700px;
-    display: flex;
-    flex-direction: column;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
 }
 
 .canvas {
@@ -21,4 +21,5 @@ form {
 
 .cell {
   border: 1px solid black;
+  /* transform: rotate(45deg); */
 }

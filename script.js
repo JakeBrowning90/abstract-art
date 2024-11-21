@@ -4,6 +4,7 @@ const colorBtn = document.getElementById("colorBtn");
 const canvasSelect = document.getElementById("canvasSelect");
 const paletteSelect = document.getElementById("paletteSelect");
 const shapeSelect = document.getElementById("cellShapeSelect");
+const marginSelect = document.getElementById("cellMarginSelect");
 
 colorBtn.onclick = () => generateArt();
 
@@ -11,6 +12,8 @@ function generateArt() {
   applyCanvas();
   applyRes();
   applyShape();
+  applyMargin();
+
   colorCells();
 }
 
@@ -40,6 +43,13 @@ function applyShape() {
   }
 }
 
+function applyMargin() {
+  let margin = document.getElementById("cellMarginSelect").value * 5;
+  for (const child of canvas.children) {
+    child.style.margin = margin + "%";
+  }
+}
+
 function populateCanvasses() {
   canvasses.forEach((canvas) => {
     const option = document.createElement("option");
@@ -64,6 +74,15 @@ function populateShapes() {
     option.value = shape.radius;
     shapeSelect.appendChild(option);
   });
+}
+
+function populateMargins() {
+  for (let i = 0; i <= 9; i++) {
+    const option = document.createElement("option");
+    option.textContent = i;
+    option.value = i;
+    marginSelect.appendChild(option);
+  }
 }
 
 function colorCells() {
@@ -139,3 +158,4 @@ const shapes = [
 populateCanvasses();
 populatePalettes();
 populateShapes();
+populateMargins();
