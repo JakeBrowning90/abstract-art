@@ -95,7 +95,6 @@ function populateMargins() {
 }
 
 function colorCells() {
-  console.log(paletteSelect.value);
   for (const child of canvas.children) {
     child.style.border = "none";
     palettes[paletteSelect.value].application(child);
@@ -168,3 +167,5 @@ populateCanvasses();
 populatePalettes();
 populateShapes();
 populateMargins();
+// Auto draw on page load
+generateArt();
