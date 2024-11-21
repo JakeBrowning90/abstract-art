@@ -4,7 +4,7 @@ TO-DO:
 - Auto draw on page load
 - color palette Object
 
-- border radius picker / randomizer
-- cell size picker / randomizer
+- border-radius randomizer
+- cell size randomizer
 - color passes w/ probability
 - logic: alter probability on adjacent colors
