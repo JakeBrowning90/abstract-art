@@ -5,6 +5,7 @@ const canvasSelect = document.getElementById("canvasSelect");
 const paletteSelect = document.getElementById("paletteSelect");
 const shapeSelect = document.getElementById("cellShapeSelect");
 const marginSelect = document.getElementById("cellMarginSelect");
+const rotationSelect = document.getElementById("cellRotateSelect");
 
 colorBtn.onclick = () => generateArt();
 
@@ -13,7 +14,7 @@ function generateArt() {
   applyRes();
   applyShape();
   applyMargin();
-
+  applyRotation()
   colorCells();
 }
 
@@ -47,6 +48,13 @@ function applyMargin() {
   let margin = document.getElementById("cellMarginSelect").value * 5;
   for (const child of canvas.children) {
     child.style.margin = margin + "%";
+  }
+}
+
+function applyRotation() {
+  let rotation = document.getElementById("cellRotateSelect").value;
+  for (const child of canvas.children) {
+    child.style.transform = "rotate(" + rotation + "deg)";
   }
 }
 
@@ -84,6 +92,7 @@ function populateMargins() {
     marginSelect.appendChild(option);
   }
 }
+
 
 function colorCells() {
   for (const child of canvas.children) {
@@ -159,3 +168,4 @@ populateCanvasses();
 populatePalettes();
 populateShapes();
 populateMargins();
+populateRotation();
