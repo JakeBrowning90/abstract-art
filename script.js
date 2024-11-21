@@ -14,7 +14,7 @@ function generateArt() {
   applyRes();
   applyShape();
   applyMargin();
-  applyRotation()
+  applyRotation();
   colorCells();
 }
 
@@ -70,7 +70,8 @@ function populateCanvasses() {
 function populatePalettes() {
   palettes.forEach((palette) => {
     const option = document.createElement("option");
-    option.textContent = palette;
+    option.textContent = palette.name;
+    option.value = palettes.indexOf(palette);
     paletteSelect.appendChild(option);
   });
 }
@@ -93,70 +94,69 @@ function populateMargins() {
   }
 }
 
-
 function colorCells() {
+  console.log(paletteSelect.value);
   for (const child of canvas.children) {
     child.style.border = "none";
-    coloring[paletteSelect.value + "Color"](child);
+    palettes[paletteSelect.value].application(child);
   }
 }
 
-const coloring = {
-  randomColor: function (element) {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-
-    element.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-  },
-  transitColor: function (element) {
-    const x = Math.floor(Math.random() * transitColorPalette.length);
-    element.style.backgroundColor = transitColorPalette[x];
-  },
-  monoColor: function (element) {
-    const x = Math.floor(Math.random() * monoColorPalette.length);
-    element.style.backgroundColor = monoColorPalette[x];
-  },
-  mondrianColor: function (element) {
-    const x = Math.floor(Math.random() * mondrianColorPalette.length);
-    element.style.backgroundColor = mondrianColorPalette[x];
-  },
-  rainbowColor: function (element) {
-    const x = Math.floor(Math.random() * rainbowColorPalette.length);
-    element.style.backgroundColor = rainbowColorPalette[x];
-  },
-  marpatColor: function (element) {
-    const x = Math.floor(Math.random() * marpatColorPalette.length);
-    element.style.backgroundColor = marpatColorPalette[x];
-  },
-};
-
-const transitColorPalette = ["black", "yellow", "cyan", "magenta"];
-
-const monoColorPalette = [
-  "#ffffff",
-  "#c0c0c0",
-  "#808080",
-  "#404040",
-  "#000000",
-];
-
-const mondrianColorPalette = ["black", "white", "red", "yellow", "blue"];
-
-const rainbowColorPalette = [
-  "#A587CA",
-  "#36CEDC",
-  "#8FE968",
-  "#FFEA56",
-  "#FFB750",
-  "#FE797B",
-];
-
-const marpatColorPalette = ["#2e2c35", "#896e60", "#95837a", "#4e5b51"];
-
 const canvasses = ["transparent", "white", "black", "lightgrey"];
 
-const palettes = ["random", "transit", "mono", "mondrian", "rainbow", "marpat"];
+const palettes = [
+  {
+    name: "Random",
+    // palette: [ NONE FOR RANDOM ],
+    application(element) {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+
+      element.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    },
+  },
+  {
+    name: "Transit",
+    palette: ["black", "yellow", "cyan", "magenta"],
+    application(element) {
+      const x = Math.floor(Math.random() * this.palette.length);
+      element.style.backgroundColor = this.palette[x];
+    },
+  },
+  {
+    name: "Rainbow",
+    palette: ["#A587CA", "#36CEDC", "#8FE968", "#FFEA56", "#FFB750", "#FE797B"],
+    application(element) {
+      const x = Math.floor(Math.random() * this.palette.length);
+      element.style.backgroundColor = this.palette[x];
+    },
+  },
+  {
+    name: "Mondrian",
+    palette: ["black", "white", "red", "yellow", "blue"],
+    application(element) {
+      const x = Math.floor(Math.random() * this.palette.length);
+      element.style.backgroundColor = this.palette[x];
+    },
+  },
+  {
+    name: "Mono",
+    palette: ["#ffffff", "#c0c0c0", "#808080", "#404040", "#000000"],
+    application(element) {
+      const x = Math.floor(Math.random() * this.palette.length);
+      element.style.backgroundColor = this.palette[x];
+    },
+  },
+  {
+    name: "MARPAT",
+    palette: ["#2e2c35", "#896e60", "#95837a", "#4e5b51"],
+    application(element) {
+      const x = Math.floor(Math.random() * this.palette.length);
+      element.style.backgroundColor = this.palette[x];
+    },
+  },
+];
 
 const shapes = [
   { name: "Square", radius: "0" },
@@ -168,4 +168,3 @@ populateCanvasses();
 populatePalettes();
 populateShapes();
 populateMargins();
-populateRotation();
